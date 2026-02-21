@@ -39,88 +39,94 @@
 
         .product-image {
             width: 100%;
-            height: 250px;
-            background: linear-gradient(45deg, #1e293b, #334155);
+            height: 220px;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .product-image i { font-size: 80px; color: var(--primary); }
+        .product-image i { font-size: 70px; color: var(--primary); filter: drop-shadow(0 0 10px rgba(0,158,227,0.3)); }
 
         .content { padding: 24px; }
 
-        .category { color: var(--primary); font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+        .category { color: var(--primary); font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; }
         
-        h2 { font-size: 24px; margin: 8px 0; }
+        h2 { font-size: 22px; margin: 8px 0; font-weight: 700; }
 
-        .description { color: var(--text-muted); font-size: 14px; line-height: 1.5; margin-bottom: 20px; }
+        .description { color: var(--text-muted); font-size: 14px; line-height: 1.6; margin-bottom: 20px; }
 
         .price-tag {
             display: flex;
             align-items: center;
             justify-content: space-between;
             margin-bottom: 24px;
+            background: rgba(0,0,0,0.2);
+            padding: 10px 15px;
+            border-radius: 12px;
         }
 
-        .price { font-size: 28px; font-weight: 800; color: var(--secondary); }
+        .price { font-size: 24px; font-weight: 800; color: var(--secondary); }
 
         .btn-buy {
             width: 100%;
             background: var(--primary);
             color: white;
             border: none;
-            padding: 16px;
-            border-radius: 12px;
+            padding: 18px;
+            border-radius: 14px;
             font-size: 16px;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
-            transition: transform 0.2s, background 0.2s;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
         }
 
-        .btn-buy:hover { background: #0081ba; transform: translateY(-2px); }
-        .btn-buy:disabled { background: #475569; cursor: not-allowed; transform: none; }
+        .btn-buy:hover { background: #0081ba; transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0, 158, 227, 0.4); }
+        .btn-buy:active { transform: translateY(0); }
+        .btn-buy:disabled { background: #475569; cursor: not-allowed; opacity: 0.7; }
 
-        /* Área do PIX */
         #pix-area {
             display: none;
             margin-top: 20px;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            background: rgba(34, 197, 94, 0.05);
             border-radius: 16px;
             border: 1px dashed var(--secondary);
-            text-align: center;
+            animation: fadeIn 0.5s ease;
         }
 
-        #pix-area h3 { font-size: 14px; color: var(--secondary); margin-bottom: 10px; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        #pix-area h3 { font-size: 13px; color: var(--secondary); margin-bottom: 8px; text-transform: uppercase; }
 
         textarea {
             width: 100%;
             background: #0f172a;
-            color: #22c55e;
+            color: #4ade80;
             border: 1px solid #334155;
             border-radius: 8px;
-            padding: 10px;
-            font-family: monospace;
+            padding: 12px;
+            font-family: 'Courier New', monospace;
             font-size: 11px;
             resize: none;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            cursor: pointer;
         }
 
-        .copy-info { font-size: 11px; color: var(--text-muted); }
+        .copy-info { font-size: 11px; color: var(--text-muted); font-style: italic; }
 
         .loader {
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid var(--primary);
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid var(--primary);
             border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            animation: spin 1s linear infinite;
+            width: 18px;
+            height: 18px;
+            animation: spin 0.8s linear infinite;
             display: none;
         }
 
@@ -131,33 +137,40 @@
 
     <div class="shop-container">
         <div class="product-image">
-            <i class="fas fa-microchip"></i>
+            <i class="fas fa-bolt-lightning"></i>
         </div>
 
         <div class="content">
-            <span class="category">Hardware & Tech</span>
-            <h2>Processador Nitro X</h2>
-            <p class="description">Potência máxima para o seu setup. Entrega digital imediata após confirmação do PIX.</p>
+            <span class="category">Entrega Digital</span>
+            <h2>Premium Access Card</h2>
+            <p class="description">Ative recursos exclusivos em sua conta instantaneamente. O código é gerado após o pagamento.</p>
 
             <div class="price-tag">
                 <span class="price">R$ 50,00</span>
-                <i class="fas fa-shield-alt" title="Compra Segura" style="color: var(--secondary)"></i>
+                <i class="fa-brands fa-pix" style="color: var(--secondary); font-size: 24px;"></i>
             </div>
 
             <button id="btn-pix" class="btn-buy" onclick="gerarPagamento()">
                 <div class="loader" id="loader"></div>
-                <span id="btn-text"><i class="fa-brands fa-pix"></i> Pagar com PIX</span>
+                <span id="btn-text">GERAR PIX AGORA</span>
             </button>
 
             <div id="pix-area">
-                <h3><i class="fa-solid fa-qrcode"></i> PIX Copia e Cola</h3>
-                <textarea id="pix-code" readonly onclick="this.select()"></textarea>
-                <p class="copy-info">Clique no código para selecionar e copiar.</p>
+                <h3><i class="fa-solid fa-copy"></i> Copia e Cola</h3>
+                <textarea id="pix-code" readonly onclick="copyPix()"></textarea>
+                <p class="copy-info">Toque no código para copiar.</p>
             </div>
         </div>
     </div>
 
     <script>
+        function copyPix() {
+            const textArea = document.getElementById('pix-code');
+            textArea.select();
+            document.execCommand('copy');
+            alert("Código PIX copiado!");
+        }
+
         async function gerarPagamento() {
             const btn = document.getElementById('btn-pix');
             const btnText = document.getElementById('btn-text');
@@ -165,23 +178,22 @@
             const pixArea = document.getElementById('pix-area');
             const pixCode = document.getElementById('pix-code');
 
-            // --- CONFIGURAÇÃO ---
-            const accessToken = "APP_USR-2926870035529230-021119-799834c980f71cd5170b27170e1ec829-314166223"; // COLOQUE SEU TOKEN DO MERCADO PAGO AQUI
+            // --- TOKEN INSERIDO ---
+            const accessToken = "APP_USR-2926870035529230-021119-799834c980f71cd5170b27170e1ec829-314166223";
             // --------------------
 
-            // Interface visual de carregamento
             btn.disabled = true;
-            btnText.innerText = "Gerando código...";
-            loader.style.display = "block";
+            btnText.innerText = "PROCESSANDO...";
+            loader.style.display = "inline-block";
 
             const paymentData = {
                 transaction_amount: 50.00,
-                description: "Compra Processador Nitro X",
+                description: "Acesso Premium Tech Store",
                 payment_method_id: "pix",
                 payer: {
-                    email: "comprador@exemplo.com",
-                    first_name: "Usuario",
-                    last_name: "GitHub"
+                    email: "comprador_github@test.com",
+                    first_name: "Cliente",
+                    last_name: "Digital"
                 }
             };
 
@@ -200,17 +212,17 @@
                 if (data.point_of_interaction) {
                     pixArea.style.display = 'block';
                     pixCode.value = data.point_of_interaction.transaction_data.qr_code;
-                    btnText.innerText = "Aguardando Pagamento...";
+                    btnText.innerText = "PIX AGUARDANDO";
                     loader.style.display = "none";
                 } else {
-                    throw new Error("Erro na resposta da API");
+                    throw new Error(data.message || "Erro API");
                 }
 
             } catch (error) {
                 console.error(error);
-                alert("Erro ao processar o PIX. Verifique se sua Key está correta.");
+                alert("Erro: O Mercado Pago bloqueou a conexão direta (CORS) ou a chave é inválida. Se o erro persistir, será necessário usar o Firebase Functions.");
                 btn.disabled = false;
-                btnText.innerText = "Tentar Novamente";
+                btnText.innerText = "TENTAR NOVAMENTE";
                 loader.style.display = "none";
             }
         }
